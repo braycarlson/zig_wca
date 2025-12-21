@@ -1,0 +1,14 @@
+.{
+    .fingerprint = 0xda9ace6dd1a2c3b1,
+    .name = .wca,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.14.0",
+    .paths = .{
+        "src",
+        "examples",
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE",
+        "README.md",
+    },
+}
