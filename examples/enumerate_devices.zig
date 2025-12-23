@@ -31,6 +31,7 @@ fn listDevices(
     std.debug.print("Found {d} devices:\n", .{count});
 
     var i: u32 = 0;
+
     while (i < count) : (i += 1) {
         const device = try collection.item(i);
         defer _ = device.release();

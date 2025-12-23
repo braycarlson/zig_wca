@@ -56,6 +56,7 @@ pub const IAudioSessionControl2 = extern struct {
 
         if (id_ptr) |ptr| {
             defer com.taskMemFree(@ptrCast(ptr));
+
             var len: usize = 0;
             while (ptr[len] != 0) : (len += 1) {}
             return std.unicode.utf16LeToUtf8Alloc(allocator, ptr[0..len]) catch return wca.Error.Unexpected;
@@ -72,6 +73,7 @@ pub const IAudioSessionControl2 = extern struct {
 
         if (id_ptr) |ptr| {
             defer com.taskMemFree(@ptrCast(ptr));
+
             var len: usize = 0;
             while (ptr[len] != 0) : (len += 1) {}
             return std.unicode.utf16LeToUtf8Alloc(allocator, ptr[0..len]) catch return wca.Error.Unexpected;

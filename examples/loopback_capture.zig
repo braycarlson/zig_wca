@@ -72,6 +72,7 @@ pub fn main() !void {
             if (!buffer.isSilent()) {
                 const data_slice = buffer.slice(mix_format.block_align);
                 const samples: []const i16 = @alignCast(std.mem.bytesAsSlice(i16, data_slice));
+
                 for (samples) |sample| {
                     const level = @abs(@as(f32, @floatFromInt(sample)) / 32768.0);
                     if (level > peak_level) peak_level = level;

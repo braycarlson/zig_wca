@@ -70,6 +70,7 @@ pub fn main() !void {
             const buffer = try render_client.getBuffer(available);
             const byte_count = available * @as(u32, mix_format.block_align);
             @memset(buffer[0..byte_count], 0);
+
             try render_client.releaseBuffer(available, 0);
             frames_written += available;
         }

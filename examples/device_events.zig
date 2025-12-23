@@ -40,6 +40,7 @@ pub fn main() !void {
         .onDeviceStateChanged = &onDeviceStateChanged,
         .onPropertyValueChanged = &onPropertyValueChanged,
     });
+
     defer _ = notification_client.vtable.Release(notification_client);
 
     try enumerator.registerEndpointNotificationCallback(@ptrCast(notification_client));

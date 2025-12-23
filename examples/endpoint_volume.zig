@@ -34,14 +34,17 @@ pub fn main() !void {
     std.debug.print("----------------------------------------\n", .{});
     std.debug.print("Current volume: {d:.1}%\n", .{current_volume * 100});
     std.debug.print("Muted: {}\n", .{current_mute});
+
     std.debug.print("Volume range: {d:.1} dB to {d:.1} dB (increment: {d:.2} dB)\n", .{
         volume_range.min_db,
         volume_range.max_db,
         volume_range.increment_db,
     });
+
     std.debug.print("Channels: {d}\n", .{channel_count});
 
     var i: u32 = 0;
+
     while (i < channel_count) : (i += 1) {
         const ch_volume = try endpoint_volume.getChannelVolumeLevelScalar(i);
         std.debug.print("  Channel {d}: {d:.1}%\n", .{ i, ch_volume * 100 });

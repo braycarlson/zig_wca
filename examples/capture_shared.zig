@@ -60,6 +60,7 @@ pub fn main() !void {
 
     var frames_captured: u64 = 0;
     const target_frames = mix_format.samples_per_sec * 2;
+
     var captured_data: std.ArrayList(u8) = .{};
     defer captured_data.deinit(allocator);
 

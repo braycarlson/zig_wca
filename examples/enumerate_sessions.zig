@@ -29,6 +29,7 @@ pub fn main() !void {
     std.debug.print("----------------------------------------\n", .{});
 
     var i: i32 = 0;
+
     while (i < count) : (i += 1) {
         const session_control = try session_enumerator.getSession(i);
         defer _ = session_control.release();
@@ -37,6 +38,7 @@ pub fn main() !void {
 
         if (try session_control.getDisplayName(allocator)) |name| {
             defer allocator.free(name);
+
             if (name.len > 0) {
                 std.debug.print("Session {d}: {s} (state: {})\n", .{ i, name, state });
             } else {

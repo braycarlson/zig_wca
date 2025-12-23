@@ -32,6 +32,7 @@ pub const ISimpleAudioVolume = extern struct {
         var level: f32 = 0;
         const hr = self.vtable.GetMasterVolume(self, &level);
         try wca.hresultToError(hr);
+
         return level;
     }
 
@@ -44,6 +45,7 @@ pub const ISimpleAudioVolume = extern struct {
         var mute: i32 = 0;
         const hr = self.vtable.GetMute(self, &mute);
         try wca.hresultToError(hr);
+
         return mute != 0;
     }
 };

@@ -26,7 +26,6 @@ const IPolicyConfigVistaVtbl = extern struct {
     base: com.IUnknownVtbl,
     GetMixFormat: *const fn (*IPolicyConfigVista, ?[*:0]const u16, *?*types.WAVEFORMATEX) callconv(.winapi) HRESULT,
     GetDeviceFormat: *const fn (*IPolicyConfigVista, ?[*:0]const u16, i32, *?*types.WAVEFORMATEX) callconv(.winapi) HRESULT,
-    ResetDeviceFormat: *const fn (*IPolicyConfigVista, ?[*:0]const u16) callconv(.winapi) HRESULT,
     SetDeviceFormat: *const fn (*IPolicyConfigVista, ?[*:0]const u16, *types.WAVEFORMATEX, *types.WAVEFORMATEX) callconv(.winapi) HRESULT,
     GetProcessingPeriod: *const fn (*IPolicyConfigVista, ?[*:0]const u16, i32, *i64, *i64) callconv(.winapi) HRESULT,
     SetProcessingPeriod: *const fn (*IPolicyConfigVista, ?[*:0]const u16, *i64) callconv(.winapi) HRESULT,
