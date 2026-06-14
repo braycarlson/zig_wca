@@ -1,8 +1,10 @@
 const std = @import("std");
 const wca = @import("wca");
 
+extern "kernel32" fn Sleep(dwMilliseconds: u32) callconv(.winapi) void;
+
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa: std.heap.DebugAllocator(.{}) = .init;
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
@@ -54,7 +56,7 @@ pub fn main() !void {
 
     std.debug.print("Setting volume to 50%...\n", .{});
     try endpoint_volume.setMasterVolumeLevelScalar(0.5, null);
-    std.Thread.sleep(1 * std.time.ns_per_s);
+    Sleep(1000);
 
     std.debug.print("Restoring volume to {d:.1}%...\n", .{current_volume * 100});
     try endpoint_volume.setMasterVolumeLevelScalar(current_volume, null);

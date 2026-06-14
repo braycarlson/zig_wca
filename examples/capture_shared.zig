@@ -1,8 +1,10 @@
 const std = @import("std");
 const wca = @import("wca");
 
+extern "kernel32" fn Sleep(dwMilliseconds: u32) callconv(.winapi) void;
+
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa: std.heap.DebugAllocator(.{}) = .init;
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
@@ -61,7 +63,7 @@ pub fn main() !void {
     var frames_captured: u64 = 0;
     const target_frames = mix_format.samples_per_sec * 2;
 
-    var captured_data: std.ArrayList(u8) = .{};
+    var captured_data: std.ArrayList(u8) = .empty;
     defer captured_data.deinit(allocator);
 
     while (frames_captured < target_frames) {
@@ -78,7 +80,7 @@ pub fn main() !void {
 
             frames_captured += buffer.num_frames;
         } else {
-            std.Thread.sleep(@intCast(@divTrunc(latency_ns, 2)));
+            Sleep(@intCast(@divTrunc(latency_ns, 2 * std.time.ns_per_ms)));
         }
     }
 

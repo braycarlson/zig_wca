@@ -1,5 +1,5 @@
-# locker
 .zig-cache/
+examples/
 zig-out/
 
 # Binaries for programs and plugins
