@@ -106,7 +106,7 @@ pub fn createEvent(manual_reset: bool, initial_state: bool) ?windows.HANDLE {
 }
 
 pub fn closeHandle(handle: windows.HANDLE) bool {
-    return CloseHandle(handle) != 0;
+    return CloseHandle(handle).toBool();
 }
 
 pub fn waitForSingleObject(handle: windows.HANDLE, milliseconds: u32) u32 {

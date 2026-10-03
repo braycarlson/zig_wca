@@ -80,7 +80,9 @@ pub const IAudioClient2 = extern struct {
     }
 
     pub fn getDevicePeriod(self: *Self) wca.Error!struct { default: REFERENCE_TIME, minimum: REFERENCE_TIME } {
-        return self.asAudioClient().getDevicePeriod();
+        const period = try self.asAudioClient().getDevicePeriod();
+
+        return .{ .default = period.default, .minimum = period.minimum };
     }
 
     pub fn start(self: *Self) wca.Error!void {

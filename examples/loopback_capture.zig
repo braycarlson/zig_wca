@@ -4,7 +4,7 @@ const wca = @import("wca");
 extern "kernel32" fn Sleep(dwMilliseconds: u32) callconv(.winapi) void;
 
 pub fn main() !void {
-    var gpa: std.heap.DebugAllocator(.{}) = .init;
+    var gpa: std.heap.SafeAllocator = .init(std.heap.page_allocator, .{});
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
